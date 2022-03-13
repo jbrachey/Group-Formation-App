@@ -1,1 +1,5 @@
 # Group-Formation-App
+
+Carson Duerr, Jacob Brachey, Nathan Mucha, Robinson McCormick 
+
+Our problem for this sprint is mainly the same as last sprint, with the bulk of the problem being that it can be difficult and often awkward for students to find teammates for group projects. Often, students without groups have to send messages to large GroupMes or other chats asking if any teams are still looking for students, which can feel awkward and intimidating for a lot of students. Even if this student is able to find a group with this method, they are basically joining the first team that responds to them without knowing any information about the other students. This often leads to groups for long-term class projects not meshing well, which makes the project experience worse for everyone involved. On the other side, groups who have a few members but need one or two more students often find it difficult to find additional students to fill up the group. This portion of our problem overview has not changed since the last sprint, so more details on the problem overview can be found in the sprint 2 section of the notebook.
