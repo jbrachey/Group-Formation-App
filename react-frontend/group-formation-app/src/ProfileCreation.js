@@ -8,24 +8,29 @@ function ProfileCreation(){
             <br></br>
             <input type="text" id="fname" name="fname"/>
             <br></br>
+            <br></br>
             <label for="lname">Last name:</label>
             <br></br>
             <input type="text" id="lname" name="lname"/>
+            <br></br>
             <br></br>
             <label for="year">Year:</label>
             <br></br>
             <input type="text" id="year" name="year"/>
             <br></br>
-            <label for="skills">Experience/Skills</label>
+            <br></br>
+            <label for="skills">Experience/Skills:</label>
             <br></br>
             <input type="text" id="skills" name="skills"/>
             <br></br>
-            <label for="interests">Interests</label>
+            <br></br>
+            <label for="interests">Interests:</label>
             <br></br>
             <input type="text" id="interests" name="interests"/>
             <br></br>
             <br></br>
-            <button class="App-CreateProfileButton">Create Profile</button>
+            <br></br>
+            <button class="App-CreateButton">Create Profile</button>
 
         </div>
     )
