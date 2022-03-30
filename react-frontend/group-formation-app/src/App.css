@@ -1,5 +1,17 @@
 .App {
   text-align: center;
+  background-color: grey;
+}
+
+.App-group{
+  background-color: rgb(26, 148, 185);
+
+  align-items: center;
+  min-height: 10vh;
+}
+
+.App-group-exp-skills{
+
 }
 
 .App-logo {
