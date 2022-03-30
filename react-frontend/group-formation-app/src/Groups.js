@@ -5,16 +5,33 @@ function Groups(){
     return(
         <div>
             <h1 className="App-header App-h1">Open Groups</h1>
-            <div className="App-group">Group 1
+            <div className="App-group">Concrete Conglomerate
                 <br></br>
-                <img src="https://github.com/jbrachey/Group-Formation-App/blob/3659254c72ee1d96d3f6d39f68da0d16acf0225c/react-frontend/group-formation-app/src/availability.jpg"></img>
+                <img src=""></img>
                 <br></br>
-                <text className="App-group-info">Required Skills/Experience:</text>
+                <text className="App-group-info">Required Skills/Experience: Python</text>
+                <br></br>
+                <button className="App-groupsButton">Join Team</button>
             </div>
             <br></br>
             <br></br>
-            <div className="App-group">Group 2
-
+            <div className="App-group">Unnamed Team
+                <br></br>
+                <img src=""></img>
+                <br></br>
+                <text className="App-group-info">Required Skills/Experience: Java</text>
+                <br></br>
+                <button className="App-groupsButton">Join Team</button>
+            </div>
+            <br></br>
+            <br></br>
+            <div className="App-group">Team Supreme
+                <br></br>
+                <img src=""></img>
+                <br></br>
+                <text className="App-group-info">Required Skills/Experience: C++</text>
+                <br></br>
+                <button className="App-groupsButton">Join Team</button>
             </div>
         </div>
 
