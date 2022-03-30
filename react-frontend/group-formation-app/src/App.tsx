@@ -7,6 +7,7 @@ import GroupCreation from './GroupCreation';
 import ProfileCreation from './ProfileCreation';
 import Students from './Students';
 import {Route, Link} from 'react-router-dom';
+import "./index.css";
 
 function App() {
   return (
