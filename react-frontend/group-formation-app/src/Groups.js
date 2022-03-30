@@ -3,16 +3,18 @@ import App from "./App";
 
 function Groups(){
     return(
-        <div className="App">
-            <h1 className="App-header">Open Groups
-            </h1>
-            <div className="App-group">
-                    group 1
+        <div>
+            <h1 className="App-header App-h1">Open Groups</h1>
+            <div className="App-group">Group 1
+                <br></br>
+                <img src="availability.jpg"></img>
+                <br></br>
+                <text className="App-group-info">Required Skills/Experience:</text>
             </div>
             <br></br>
             <br></br>
-            <div className="App-group">
-                group 2
+            <div className="App-group">Group 2
+
             </div>
         </div>
 

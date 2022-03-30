@@ -5,13 +5,20 @@
 
 .App-group{
   background-color: rgb(26, 148, 185);
-
-  align-items: center;
-  min-height: 10vh;
+  border: none;
+  color: white;
+  padding: 50px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
+  width: 40%;
+  border-radius: 8px;
 }
 
-.App-group-exp-skills{
-
+.App-group-info{
+  color: white;
+  font-size: 12px;
 }
 
 .App-logo {
