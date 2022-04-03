@@ -1,5 +1,6 @@
 import React from "react";
 import App from "./App";
+import BottomNav from "./BottomNav";
 
 function Groups(){
     return(
@@ -33,6 +34,7 @@ function Groups(){
                 <br></br>
                 <button className="App-groupsButton">Join Team</button>
             </div>
+            <BottomNav/>
         </div>
 
     )
