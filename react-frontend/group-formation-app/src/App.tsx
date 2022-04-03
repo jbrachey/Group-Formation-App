@@ -6,17 +6,19 @@ import Groups from './Groups';
 import GroupCreation from './GroupCreation';
 import ProfileCreation from './ProfileCreation';
 import Students from './Students';
-import {Route, Link} from 'react-router-dom';
+import {Route, Link, Routes} from 'react-router-dom';
 import "./index.css";
 
 function App() {
   return (
     <div className="App">
-      <Route exact path="/" component={CoursesHome} />
-      <Route exact path="/groups" component={Groups} />
-      <Route exact path="/groupcreation" component={GroupCreation} />
-      <Route exact path="/profilecreation" component={ProfileCreation} />
-      <Route exact path="/students" component={Students} />
+      <Routes>
+        <Route path="/" element={<CoursesHome />} />
+        <Route path="/groups" element={<Groups/>} />
+        <Route path="/groupcreation" element={<GroupCreation/>} />
+        <Route path="/profilecreation" element={<ProfileCreation/>} />
+        <Route path="/students" element={<Students/>} />
+      </Routes>
     </div>
   );
 }
