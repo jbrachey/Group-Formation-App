@@ -1,0 +1,29 @@
+.group-display {
+    background-color: white;
+    border: 2px black;
+    padding: 10;
+    align-items: center;
+    display: inline-block;
+    font-size: 32px;
+    width: 40%;
+    border-radius: 20;
+    color: black;
+}
+
+.group-info {
+    font-size: 16px;
+}
+
+.groups-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 30%;
+    border-radius: 8px;
+}
+
