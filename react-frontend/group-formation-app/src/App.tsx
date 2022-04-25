@@ -8,7 +8,6 @@ import ProfileCreation from './ProfileCreation';
 import Students from './Students';
 import {Route, Link, Routes} from 'react-router-dom';
 import "./index.css";
-import ScheduleTable from './Schedule/ScheduleTable';
 
 function App() {
   return (
