@@ -12,8 +12,8 @@ const Groups = () => {
             <h1 className="App-header App-h1">Open Groups</h1>
             {groups.map(group => {
                 return (
-                <li key={group.name}>
-                    <GroupDisplay name={group.name} schedule={group.schedule} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents}/>
+                <li key={group.groupID}>
+                    <GroupDisplay groupID={group.groupID} name={group.name} schedule={group.schedule} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents}/>
                 </li>
                 )
             })}
@@ -60,6 +60,7 @@ const getGroups = (courseID) => {
     const schedule3 = [true, true, true, false]
     const schedule4 = [false, false, true, true]
     let group1 = {
+        groupID: 1,
         name: "Concrete Conglomerate " + courseID, 
         schedule: schedule1,
         neededExp: "React coding",
@@ -67,6 +68,7 @@ const getGroups = (courseID) => {
         totalStudents: 4
     };
     let group2 = {
+        groupID: 2,
         name: "Cool team", 
         schedule: schedule2,
         neededExp: "Anything",
@@ -74,6 +76,7 @@ const getGroups = (courseID) => {
         totalStudents: 4
     };
     let group3 = {
+        groupID: 3,
         name: "APPteam", 
         schedule: schedule3,
         neededExp: "backend",
@@ -81,6 +84,7 @@ const getGroups = (courseID) => {
         totalStudents: 5
     };
     let group4 = {
+        groupID: 4,
         name: "Cool Kids", 
         schedule: schedule4,
         neededExp: "Frontend on iOS",
