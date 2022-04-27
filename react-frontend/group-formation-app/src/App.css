@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: grey;
+  height: 100vh;
 }
 
 .App-group{
@@ -74,12 +75,12 @@
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 50px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 32px;
-    width: 40%;
+    width: 75%;
+    max-width: 400px;
     border-radius: 8px;
 }
 .button4400 {background-color: red;}
@@ -110,3 +111,7 @@
   border-radius: 8px;
 }
 
+.group-creation-form {
+  justify-content: center;
+  align-content: center;
+}
