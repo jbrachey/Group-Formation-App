@@ -2,7 +2,7 @@ import './group-styles.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';
 
-const GroupDisplay = ({groupID, name, schedule, neededExp, numStudents, totalStudents}) => {
+const GroupDisplay = ({groupID, name, availability, neededExp, numStudents, totalStudents}) => {
     const navigate = useNavigate();
     const { userID, courseID } = useParams();
     const navigationURL = '/' + userID + '/' + courseID + '/group/' + groupID;

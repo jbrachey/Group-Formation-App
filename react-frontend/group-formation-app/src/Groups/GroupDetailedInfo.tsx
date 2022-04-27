@@ -1,4 +1,5 @@
 import { useParams } from "react-router";
+import BottomNav from "../BottomNav";
 import ScheduleView from "../ScheduleView";
 import './group-styles.css';
 
@@ -6,7 +7,6 @@ const GroupDetailedInfo = () => {
     const { courseID, groupID } = useParams();
     const groupInfo = getGroupInfo(courseID, groupID);
     const availability = { availability: groupInfo.availability };
-    console.log(groupInfo.availability)
     return (
         <div>
             <div>{groupInfo.name}</div>
@@ -17,6 +17,7 @@ const GroupDetailedInfo = () => {
             <br/>
             <ScheduleView {...availability}/>
             <button className="groups-button">Request to Join Team</button>
+            <BottomNav/>
         </div>
     )
 }

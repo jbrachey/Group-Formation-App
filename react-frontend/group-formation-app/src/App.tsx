@@ -5,10 +5,11 @@ import CoursesHome from './Courses/CoursesHome';
 import Groups from './Groups/Groups';
 import GroupCreation from './Groups/GroupCreation';
 import ProfileCreation from './ProfileCreation';
-import Students from './Students';
+import Students from './Students/Students';
 import {Route, Link, Routes} from 'react-router-dom';
 import GroupDetailedInfo from './Groups/GroupDetailedInfo';
 import "./index.css";
+import StudentDetailedInfo from './Students/StudentDetailedInfo';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/:user/:courseID/groupcreation" element={<GroupCreation/>} />
         <Route path="/:user/profilecreation" element={<ProfileCreation/>} />
         <Route path="/:user/:courseID/students" element={<Students/>} />
+        <Route path="/:user/:courseID/student/:studentID" element={<StudentDetailedInfo/>} />
       </Routes>
     </div>
   );
