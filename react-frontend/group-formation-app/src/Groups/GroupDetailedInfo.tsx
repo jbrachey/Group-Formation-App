@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import BottomNav from "../BottomNav";
-import ScheduleView from "../ScheduleView";
+import ScheduleView from "../Schedule/ScheduleView";
 import './group-styles.css';
 
 const GroupDetailedInfo = () => {

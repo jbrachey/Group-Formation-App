@@ -23,7 +23,18 @@ const Students = () => {
 
 const getStudents = (courseID) => {
     // will be backend api call, for now dummy data
-    const availability = [true, false, true, true];
+    let availability: boolean[][] = [];
+    for (let days = 0; days < 7; days++) {
+        let dayArr: boolean[] = []
+        for (let hour = 0; hour < 14; hour++) {
+            if (hour + days == 2 || hour + days == 14) {
+                dayArr.push(true);
+            } else {
+                dayArr.push(false);
+            }
+        }
+        availability.push(dayArr);
+    }
     const student1 = {
         studentID: 1,
         name: "Parker Jones",

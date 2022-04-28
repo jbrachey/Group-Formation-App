@@ -24,14 +24,22 @@ const Groups = () => {
 
 const getGroups = (courseID) => {
     // This method will need to make an api call, just dummy groups for now
-    const schedule1 = [true, false, true, false]
-    const schedule2 = [true, false, true, true]
-    const schedule3 = [true, true, true, false]
-    const schedule4 = [false, false, true, true]
+    let availability: boolean[][] = [];
+    for (let days = 0; days < 7; days++) {
+        let dayArr: boolean[] = []
+        for (let hour = 0; hour < 14; hour++) {
+            if (hour + days == 2 || hour + days == 14) {
+                dayArr.push(true);
+            } else {
+                dayArr.push(false);
+            }
+        }
+        availability.push(dayArr);
+    }
     let group1 = {
         groupID: 1,
         name: "Concrete Conglomerate " + courseID, 
-        availability: schedule1,
+        availability: availability,
         neededExp: "React coding",
         numStudents: 3,
         totalStudents: 4
@@ -39,7 +47,7 @@ const getGroups = (courseID) => {
     let group2 = {
         groupID: 2,
         name: "Cool team", 
-        availability: schedule2,
+        availability: availability,
         neededExp: "Anything",
         numStudents: 1,
         totalStudents: 4
@@ -47,7 +55,7 @@ const getGroups = (courseID) => {
     let group3 = {
         groupID: 3,
         name: "APPteam", 
-        availability: schedule3,
+        availability: availability,
         neededExp: "backend",
         numStudents: 2,
         totalStudents: 5
@@ -55,7 +63,7 @@ const getGroups = (courseID) => {
     let group4 = {
         groupID: 4,
         name: "Cool Kids", 
-        availability: schedule4,
+        availability: availability,
         neededExp: "Frontend on iOS",
         numStudents: 3,
         totalStudents: 5

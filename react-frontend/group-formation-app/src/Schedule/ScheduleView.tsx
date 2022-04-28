@@ -1,9 +1,6 @@
-import './Groups/group-styles.css';
+import './schedule-styles.css';
 
 const ScheduleView = ({availability}) => {
-    console.log("in schedule view")
-    console.log(availability);
-    console.log(availability[0][0])
     return (
         <div className="table-style">
             <div className="times">
