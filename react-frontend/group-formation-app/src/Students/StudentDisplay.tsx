@@ -3,6 +3,7 @@ import './student-styles.css';
 import { useNavigate, useParams } from "react-router-dom";
 import BottomNav from "../BottomNav";
 import ConciseScheduleView from "../Schedule/ConciseScheduleView";
+import StudentDisplayHeader from "./StudentDisplayHeader";
 
 const StudentDisplay = ({studentID, name, major, year, availability}) => {
     const navigate = useNavigate();
@@ -11,8 +12,7 @@ const StudentDisplay = ({studentID, name, major, year, availability}) => {
     return (
         <div>
             <button onClick={() => {navigate(navigationURL)}} className="student-display">
-                <label>{name}</label>
-                <br/>
+                <StudentDisplayHeader name={name} />
                 <text className="student-info">Major: {major}</text>
                 <br/>
                 <text className="student-info">Year: {year}</text>

@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-  background-color: grey;
-  height: 100vh;
+  background-color: #DFDFDF;
+  min-height: 100vh;
+  height: auto;
+  margin-bottom: 50px;
 }
 
 .App-group{

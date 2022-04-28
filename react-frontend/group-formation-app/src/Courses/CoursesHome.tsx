@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import { useNavigate } from 'react-router-dom';
+import PageHeader from "../PageHeader";
 import CourseDisplay from "./CourseDisplay";
 
 const CoursesHome = () => {
@@ -9,25 +10,16 @@ const CoursesHome = () => {
     const courses = getCourses(studentID);
     return(
         <div>
-            <h1 className="App-header App-h1">Courses</h1>
-            {courses.map(course => {
-                return (
-                <li key={course.courseID}>
-                    <CourseDisplay name={course.name} courseID={course.courseID} />
-                </li>
-                )
-            })}
-            {/*<button onClick={() => {navigate('/groups')}} class="App-CoursesButton button4400">CS4400: Database Systems</button>
-            <br></br>
-            <br></br>
-            <button class="App-CoursesButton button2340">CS2340: Objects & Design</button>
-            <br></br>
-            <br></br>
-            <button class="App-CoursesButton button4261">CS4261: Mobile Apps & Svcs</button>
-            <br></br>
-            <br></br>
-            <br></br>
-            <button class="App-JoinCourseButton">Join Course</button>*/}
+            <PageHeader title={"Courses"} hasBackArrow={false} />
+            <ul>
+                {courses.map(course => {
+                    return (
+                    <li key={course.courseID}>
+                        <CourseDisplay name={course.name} courseID={course.courseID} />
+                    </li>
+                    )
+                })}
+            </ul>
         </div>
     )
 }

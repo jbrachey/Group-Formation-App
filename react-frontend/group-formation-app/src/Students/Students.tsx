@@ -1,20 +1,23 @@
 import { useParams } from "react-router";
 import StudentDisplay from "./StudentDisplay";
 import BottomNav from "../BottomNav";
+import PageHeader from "../PageHeader";
 
 const Students = () => {
     const { user, courseID } = useParams();
     const students = getStudents(courseID);
     return (
         <div>
-            <h1 className="App-header App-h1">Available Students</h1>
-            {students.map(student => {
-                return (
-                <li key={student.studentID}>
-                    <StudentDisplay studentID={student.studentID} name={student.name} major={student.major} year={student.year} availability={student.availability}/>
-                </li>
-                )
-            })}
+            <PageHeader title={"Available Students"} hasBackArrow={false} />
+            <ul>
+                {students.map(student => {
+                    return (
+                    <li key={student.studentID}>
+                        <StudentDisplay studentID={student.studentID} name={student.name} major={student.major} year={student.year} availability={student.availability}/>
+                    </li>
+                    )
+                })}
+            </ul>
             <BottomNav/>
         </div>
 

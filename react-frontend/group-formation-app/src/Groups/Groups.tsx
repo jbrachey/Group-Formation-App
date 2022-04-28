@@ -2,20 +2,23 @@ import React from "react";
 import BottomNav from "../BottomNav";
 import GroupDisplay from "./GroupDisplay";
 import { useParams } from "react-router-dom";
+import PageHeader from "../PageHeader";
 
 const Groups = () => {
     const { courseID } = useParams();
     const groups = getGroups(courseID);
     return (
         <div>
-            <h1 className="App-header App-h1">Open Groups</h1>
-            {groups.map(group => {
-                return (
-                <li key={group.groupID}>
-                    <GroupDisplay groupID={group.groupID} name={group.name} availability={group.availability} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents}/>
-                </li>
-                )
-            })}
+            <PageHeader title={"Open Groups"} hasBackArrow={false} />
+            <ul>
+                {groups.map(group => {
+                    return (
+                    <li key={group.groupID}>
+                        <GroupDisplay groupID={group.groupID} name={group.name} availability={group.availability} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents}/>
+                    </li>
+                    )
+                })}
+            </ul>
             <BottomNav/>
         </div>
 
