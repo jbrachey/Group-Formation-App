@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import BottomNav from "../BottomNav";
-import ScheduleView from "../ScheduleView";
+import ScheduleView from "../Schedule/ScheduleView";
 
 const StudentDetailedInfo = () => {
     const { courseID, studentID } = useParams();
