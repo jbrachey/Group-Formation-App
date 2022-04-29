@@ -1,30 +1,79 @@
 import { useParams } from "react-router-dom";
 import BottomNav from "../BottomNav";
 import ScheduleView from "../Schedule/ScheduleView";
+import firebase from './../firebase.js';
+import React,{useState,useEffect} from 'react';
 
 const StudentDetailedInfo = () => {
     const { courseID, studentID } = useParams();
-    const studentInfo = getStudentInfo(courseID, studentID);
-    const availability = { availability: studentInfo.availability };
+    //const studentInfo = getStudentInfo(courseID, studentID);
+    //const availability = { availability: studentInfo.availability };
+    const [students,setStudents]=useState<any>([])
+    const [profiles,setProfiles]=useState<any>([])
+    //var fullArr: any[] = []
+    const fetchStudents = async() => {
+        const response=firebase.db.collection('students');
+        const data = await response.get();
+        console.log(data.docs);
+        data.docs.forEach(item=>{
+            //console.log(item.data());
+            //console.log(item.data().courses);
+            if (item.data().studentID === studentID) {
+                console.log("Worked");
+                setStudents([...students, item.data()]);
+            } /*else {
+                console.log("Not in");
+            }*/
+        }
+        )  
+    }
+    useEffect(() => {
+    fetchStudents();
+    }, [])
+    const fetchProfiles = async() => {
+        const response2=firebase.db.collection('profiles');
+        const data2 = await response2.get();
+        console.log(data2.docs);
+        data2.docs.forEach(item=>{
+            if (item.data().studentID === studentID && item.data().course === 'CS 4261') {
+                console.log("Worked Prof");
+                setProfiles([...profiles, item.data()])
+            }
+        })
+    }
+
+    useEffect(() => {
+    fetchProfiles();
+    }, [])
+    console.log("Student: ", students);
+    console.log("Profile: ", profiles);
+    //const studentInfo = getStudentInfo(courseID, studentID);
+    //const availability = { availability: students.availability };
+    if (students[0] && profiles[0]) {
+    const availability = profiles[0].availability;
+    console.log("Sched: ", availability);
+    console.log(availability['Monday']);
     return (
         <div>
-            <div>{studentInfo.name}</div>
+            <div>{students[0].name}</div>
             <br/>
-            <div>Major: {studentInfo.major}</div>
+            <div>Major: {students[0].major}</div>
             <br/>
-            <div>Year: {studentInfo.year}</div>
+            <div>Year: {students[0].year}</div>
             <br/>
             <ScheduleView {...availability}/>
             <br/>
-            <div>Experience/Skills: {studentInfo.experience}</div>
+            <div>Experience/Skills: {profiles[0].experience}</div>
             <br/>
-            <div>Interests: {studentInfo.interests}</div>
+            <div>Interests: {profiles[0].interests}</div>
             <button className="groups-button">Invite to Join Your Team</button>
             <BottomNav/>
         </div>
     )
-}
+} else {return null}
+} 
 
+/*
 const getStudentInfo = (courseID, studentID) => {
     // will be backend api call, for now just dummy data
     let availability: boolean[][] = [];
@@ -48,5 +97,6 @@ const getStudentInfo = (courseID, studentID) => {
         interests: "I like playing basketball and working out"
     };
 }
+*/
 
 export default StudentDetailedInfo;

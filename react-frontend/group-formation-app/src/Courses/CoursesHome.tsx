@@ -1,18 +1,38 @@
-import React from "react";
+
 import { useParams } from "react-router";
 import { useNavigate } from 'react-router-dom';
 import PageHeader from "../PageHeader";
 import CourseDisplay from "./CourseDisplay";
+import firebase from './../firebase.js';
+import React,{useState,useEffect} from 'react';
 
 const CoursesHome = () => {
     const navigate = useNavigate();
     const { studentID } = useParams();
-    const courses = getCourses(studentID);
+    //const courses = getCourses(studentID);
+    const [courses,setCourses]=useState<any>([])
+    var fullArr: any[] = []
+    const fetchStudents = async() => {
+        const response=firebase.db.collection('courses');
+        const data = await response.get();
+        console.log(data.docs);
+        data.docs.forEach(item=>{
+            console.log(item.data());
+            console.log(item.data().courses);
+            fullArr.push(item.data());
+        })
+        setCourses([...courses, fullArr])
+        
+    }
+    useEffect(() => {
+    fetchStudents();
+    }, [])
+    console.log('Courses:', courses);
     return(
         <div>
             <PageHeader title={"Courses"} hasBackArrow={false} />
             <ul>
-                {courses.map(course => {
+                {courses[0] && courses[0].map(course => {
                     return (
                     <li key={course.courseID}>
                         <CourseDisplay name={course.name} courseID={course.courseID} />
@@ -24,6 +44,7 @@ const CoursesHome = () => {
     )
 }
 
+/*
 const getCourses = (studentID) => {
     // Will be backend api call
     const course1 = {
@@ -52,6 +73,6 @@ const getCourses = (studentID) => {
     }
     return [course1, course2, course3, course4];
 }
-
+*/
 
 export default CoursesHome;
