@@ -7,7 +7,6 @@ import React,{useState,useEffect} from 'react';
 
 const SignIn = ({}) => {
     const navigate = useNavigate();
-    const { user } = useParams();
     const initState = {studentID: '', pw: ''};
     const [inputs, setInputs] = useState(initState);
     const handleChange = e => {
@@ -15,7 +14,6 @@ const SignIn = ({}) => {
         const {name, value} = e.target
         setInputs(prev => ({...prev, [name]: value}))
     }
-    const navigationURLlogin = '/' + user + '/courses';
     const navigationURLsignup = '/' + 'ProfileCreation';
     const [students,setStudents]=useState<any>([])
     var fullArr: any[] = []
@@ -37,6 +35,8 @@ const SignIn = ({}) => {
         console.log(students[0].length);
         for (var x = 0; x < students[0].length; x++) {
             if (inputs.pw === students[0][x].pw && inputs.studentID === students[0][x].studentID) {
+                const user = inputs.studentID
+                const navigationURLlogin = '/' + user + '/courses';
                 navigate(navigationURLlogin);
             } else {
                 console.log(students[0][x].studentID, " not right");

@@ -8,8 +8,8 @@ import StudentDisplayHeader from "./StudentDisplayHeader";
 const StudentDisplay = ({studentID, name, major, year, availability}) => {
     console.log("StudDisplay: ", availability);
     const navigate = useNavigate();
-    const { userID, courseID } = useParams();
-    const navigationURL = '/' + userID + '/' + courseID + '/student/' + studentID;
+    const { user, courseID } = useParams();
+    const navigationURL = '/' + user + '/' + courseID + '/student/' + studentID;
     return (
         <div>
             <button onClick={() => {navigate(navigationURL)}} className="student-display">

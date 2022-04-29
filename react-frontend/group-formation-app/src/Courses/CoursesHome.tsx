@@ -8,21 +8,37 @@ import React,{useState,useEffect} from 'react';
 
 const CoursesHome = () => {
     const navigate = useNavigate();
-    const { studentID } = useParams();
+    const { user } = useParams();
+    console.log("StudID: ",user);
     //const courses = getCourses(studentID);
     const [courses,setCourses]=useState<any>([])
     var fullArr: any[] = []
+    var courseArr: any[] = []
     const fetchStudents = async() => {
-        const response=firebase.db.collection('courses');
-        const data = await response.get();
-        console.log(data.docs);
-        data.docs.forEach(item=>{
-            console.log(item.data());
-            console.log(item.data().courses);
-            fullArr.push(item.data());
+        const response=firebase.db.collection('students').doc(user);
+        await response.get()
+        .then(doc => {
+            const data = doc.data();
+            if (data) {
+                for (var x = 0; x < data.courses.length; x++) {
+                    //console.log(data.courses[x]);
+                    fullArr.push(data.courses[x]);
+                }
+            }
+            console.log(fullArr);
+            
         })
-        setCourses([...courses, fullArr])
-        
+        for (var y = 0; y < fullArr.length; y++) {
+            const response=firebase.db.collection('courses').where("courseID", "==", fullArr[y]);
+            const data = await response.get();
+            console.log(data.docs);
+            data.docs.forEach(item=>{
+                console.log(item.data());
+                courseArr.push(item.data());
+            })
+        }
+        setCourses([...courses, courseArr])
+    
     }
     useEffect(() => {
     fetchStudents();

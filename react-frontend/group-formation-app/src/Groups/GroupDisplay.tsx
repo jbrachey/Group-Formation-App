@@ -6,8 +6,8 @@ import GroupDisplayHeader from './GroupDisplayHeader';
 
 const GroupDisplay = ({groupID, name, availability, neededExp, numStudents, totalStudents}) => {
     const navigate = useNavigate();
-    const { userID, courseID } = useParams();
-    const navigationURL = '/' + userID + '/' + courseID + '/group/' + groupID;
+    const { user, courseID } = useParams();
+    const navigationURL = '/' + user + '/' + courseID + '/group/' + groupID;
     return (
         <div>
             <button onClick={() => {navigate(navigationURL)}} className="group-display">
