@@ -4,6 +4,7 @@ import ScheduleView from "../Schedule/ScheduleView";
 import './group-styles.css';
 import firebase from './../firebase.js';
 import React,{useState,useEffect} from 'react';
+import PageHeader from "../PageHeader";
 
 const GroupDetailedInfo = () => {
     const { courseID, groupID } = useParams();
@@ -32,14 +33,13 @@ const GroupDetailedInfo = () => {
     const availability = groups[0].availability;
     return (
         <div>
-            <div>{groups[0].name}</div>
-            <br/>
+            <PageHeader title={groups[0].name} hasBackArrow={true}/>
             <div>Group goals: {groups[0].goals}</div>
             <br/>
             <div>Needed experience: {groups[0].neededExp}</div>
             <br/>
             <ScheduleView {...availability}/>
-            <button className="groups-button">Request to Join Team</button>
+            <button className="detailed-groups-button">Request to Join Team</button>
             <BottomNav/>
         </div>
     )

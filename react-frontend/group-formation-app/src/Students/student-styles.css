@@ -18,7 +18,7 @@
 
 .students-button {
     background-color: #41CB2B; /* Green */
-    border-width: 2px;
+    border-width: 1px;
     border-color: black;
     color: white;
     padding: 10px 6px;
@@ -40,6 +40,49 @@
 .header-contents {
     width: 85%;
     margin: auto;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+@media (max-width: 1200px) {
+    .student-display {
+        width: 50%;
+    }
+}
+
+@media (max-width: 850px) {
+    .student-display {
+        width: 70%;
+    }
+}
+
+@media (max-width: 600px) {
+    .student-display {
+        width: 80%;
+        font-size: 4vw;
+    }
+    
+    .header-contents {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    .student-info {
+        font-size: 2.5vw;
+    }
+}
+
+@media (max-width: 400px) {
+    .student-display {
+        width: 95%;
+        font-size: 6vw;
+    }
+    
+    .header-contents {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    .student-info {
+        font-size: 3vw;
+    }
 }

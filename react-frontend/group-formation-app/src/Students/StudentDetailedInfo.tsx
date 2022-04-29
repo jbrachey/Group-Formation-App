@@ -3,6 +3,8 @@ import BottomNav from "../BottomNav";
 import ScheduleView from "../Schedule/ScheduleView";
 import firebase from './../firebase.js';
 import React,{useState,useEffect} from 'react';
+import PageHeader from "../PageHeader";
+import './../Groups/group-styles.css';
 
 const StudentDetailedInfo = () => {
     const { courseID, studentID } = useParams();
@@ -55,8 +57,7 @@ const StudentDetailedInfo = () => {
     console.log(availability['Monday']);
     return (
         <div>
-            <div>{students[0].name}</div>
-            <br/>
+            <PageHeader title={students[0].name} hasBackArrow={true}/>
             <div>Major: {students[0].major}</div>
             <br/>
             <div>Year: {students[0].year}</div>
@@ -66,7 +67,7 @@ const StudentDetailedInfo = () => {
             <div>Experience/Skills: {profiles[0].experience}</div>
             <br/>
             <div>Interests: {profiles[0].interests}</div>
-            <button className="groups-button">Invite to Join Your Team</button>
+            <button className="detailed-groups-button">Invite to Join Your Team</button>
             <BottomNav/>
         </div>
     )
