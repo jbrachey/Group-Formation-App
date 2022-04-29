@@ -1,6 +1,6 @@
 import './schedule-styles.css';
 
-const ScheduleView = ({availability}) => {
+const ScheduleView = (availability) => {
     return (
         <div className="table-style">
             <div className="times">
@@ -21,122 +21,122 @@ const ScheduleView = ({availability}) => {
             </div>
             <div className="schedule-col">
                 <label>Mon</label>
-                <button className={availability[0][0] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][1] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][2] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][3] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][4] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][5] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][6] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][7] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][8] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][9] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][10] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][11] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][12] ? "available-time" : "unavailable-time"} />
-                <button className={availability[0][13] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][0] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][1] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][2] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][3] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][4] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][5] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][6] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][7] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][8] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][9] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][10] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][11] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][12] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Monday'][13] ? "available-time" : "unavailable-time"} />
             </div>
             <div className="schedule-col">
                 <label>Tue</label>
-                <button className={availability[1][0] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][1] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][2] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][3] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][4] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][5] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][6] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][7] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][8] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][9] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][10] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][11] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][12] ? "available-time" : "unavailable-time"} />
-                <button className={availability[1][13] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][0] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][1] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][2] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][3] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][4] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][5] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][6] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][7] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][8] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][9] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][10] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][11] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][12] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Tuesday'][13] ? "available-time" : "unavailable-time"} />
             </div>
             <div className="schedule-col">
                 <label>Wed</label>
-                <button className={availability[2][0] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][1] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][2] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][3] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][4] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][5] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][6] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][7] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][8] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][9] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][10] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][11] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][12] ? "available-time" : "unavailable-time"} />
-                <button className={availability[2][13] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][0] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][1] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][2] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][3] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][4] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][5] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][6] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][7] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][8] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][9] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][10] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][11] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][12] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Wednesday'][13] ? "available-time" : "unavailable-time"} />
             </div>
             <div className="schedule-col">
                 <label>Thu</label>
-                <button className={availability[3][0] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][1] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][2] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][3] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][4] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][5] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][6] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][7] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][8] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][9] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][10] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][11] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][12] ? "available-time" : "unavailable-time"} />
-                <button className={availability[3][13] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][0] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][1] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][2] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][3] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][4] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][5] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][6] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][7] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][8] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][9] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][10] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][11] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][12] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Thursday'][13] ? "available-time" : "unavailable-time"} />
             </div>
             <div className="schedule-col">
                 <label>Fri</label>
-                <button className={availability[4][0] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][1] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][2] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][3] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][4] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][5] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][6] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][7] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][8] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][9] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][10] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][11] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][12] ? "available-time" : "unavailable-time"} />
-                <button className={availability[4][13] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][0] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][1] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][2] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][3] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][4] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][5] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][6] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][7] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][8] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][9] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][10] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][11] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][12] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Friday'][13] ? "available-time" : "unavailable-time"} />
             </div>
             <div className="schedule-col">
                 <label>Sat</label>
-                <button className={availability[5][0] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][1] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][2] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][3] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][4] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][5] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][6] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][7] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][8] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][9] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][10] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][11] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][12] ? "available-time" : "unavailable-time"} />
-                <button className={availability[5][13] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][0] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][1] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][2] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][3] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][4] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][5] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][6] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][7] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][8] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][9] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][10] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][11] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][12] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Saturday'][13] ? "available-time" : "unavailable-time"} />
             </div>
             <div className="schedule-col">
                 <label>Sun</label>
-                <button className={availability[6][0] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][1] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][2] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][3] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][4] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][5] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][6] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][7] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][8] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][9] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][10] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][11] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][12] ? "available-time" : "unavailable-time"} />
-                <button className={availability[6][13] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][0] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][1] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][2] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][3] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][4] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][5] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][6] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][7] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][8] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][9] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][10] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][11] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][12] ? "available-time" : "unavailable-time"} />
+                <button className={availability['Sunday'][13] ? "available-time" : "unavailable-time"} />
             </div>
         </div>
     );

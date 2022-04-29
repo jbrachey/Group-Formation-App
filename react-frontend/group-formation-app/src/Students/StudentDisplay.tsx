@@ -6,6 +6,7 @@ import ConciseScheduleView from "../Schedule/ConciseScheduleView";
 import StudentDisplayHeader from "./StudentDisplayHeader";
 
 const StudentDisplay = ({studentID, name, major, year, availability}) => {
+    console.log("StudDisplay: ", availability);
     const navigate = useNavigate();
     const { userID, courseID } = useParams();
     const navigationURL = '/' + userID + '/' + courseID + '/student/' + studentID;

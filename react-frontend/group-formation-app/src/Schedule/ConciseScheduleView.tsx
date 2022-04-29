@@ -1,7 +1,6 @@
 import './schedule-styles.css';
 
 const ConciseScheduleView = ({availability}) => {
-    console.log()
     const conciseAvailability = getConciseAvailability(availability);
     //console.log(conciseAvailability)
     return (
@@ -51,10 +50,15 @@ const ConciseScheduleView = ({availability}) => {
 
 const getConciseAvailability = (availability) => {
     let conciseAvailability: boolean[] = []
-    for (let day = 0; day < availability.length; day++) {
+    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    //console.log(availability)
+    //console.log(days[0])
+    //console.log("Single Day Test: ", availability['Monday'])
+    //console.log(availability[days[0]])
+    for (let day = 0; day < 7; day++) {
         let amHours = 0;
         for (let hour = 0; hour < 4; hour++) {
-            if (availability[day][hour]) {
+            if (availability[days[day]][hour]) {
                 amHours++;
             }
         }
@@ -65,7 +69,7 @@ const getConciseAvailability = (availability) => {
         }
         let pmHours = 0;
         for (let hour = 4; hour < 14; hour++) {
-            if (availability[day][hour]) {
+            if (availability[days[day]][hour]) {
                 pmHours++;
             }
         }
