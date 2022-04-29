@@ -17,7 +17,7 @@ const SignIn = ({}) => {
                     <br></br>
                     <input type="text" id="username" name="username"/>
                     <br></br>
-                    <label className="singin-info">Password:</label>
+                    <label className="signin-info">Password:</label>
                     <br></br>
                     <input type="text" id="password" name="password"/>
                     <br></br>
