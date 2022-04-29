@@ -10,12 +10,14 @@ import {Route, Link, Routes} from 'react-router-dom';
 import GroupDetailedInfo from './Groups/GroupDetailedInfo';
 import "./index.css";
 import StudentDetailedInfo from './Students/StudentDetailedInfo';
+import SignIn from './SignIn';
 
 function App() {
   return (
     <div className="App">
       <Routes>
         {/* Eventually the path / will take you to login */}
+        <Route path="/" element={<SignIn/>} />
         <Route path="/:user/courses" element={<CoursesHome />} />
         <Route path="/:user/:courseID/groups" element={<Groups/>} />
         <Route path="/:user/:courseID/group/:groupID" element={<GroupDetailedInfo/>} />
