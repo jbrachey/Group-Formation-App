@@ -22,7 +22,7 @@ function App() {
         <Route path="/:user/:courseID/groups" element={<Groups/>} />
         <Route path="/:user/:courseID/group/:groupID" element={<GroupDetailedInfo/>} />
         <Route path="/:user/:courseID/groupcreation" element={<GroupCreation/>} />
-        <Route path="/:user/profilecreation" element={<ProfileCreation/>} />
+        <Route path="/profilecreation" element={<ProfileCreation/>} />
         <Route path="/:user/:courseID/students" element={<Students/>} />
         <Route path="/:user/:courseID/student/:studentID" element={<StudentDetailedInfo/>} />
       </Routes>

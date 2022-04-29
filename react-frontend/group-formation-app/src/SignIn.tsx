@@ -6,7 +6,8 @@ import './sign-in.css';
 const SignIn = ({}) => {
     const navigate = useNavigate();
     const { user } = useParams();
-    const navigationURL = '/' + user + '/courses';
+    const navigationURLlogin = '/' + user + '/courses';
+    const navigationURLsignup = '/' + 'ProfileCreation'
     return (
         <div>
             <PageHeader title={"Group Formation Application"} hasBackArrow={false} />
@@ -25,12 +26,12 @@ const SignIn = ({}) => {
 
                 </li>
                 <li>
-                    <button onClick={() => {navigate(navigationURL)}} className="signin-button">
+                    <button onClick={() => {navigate(navigationURLlogin)}} className="signin-button">
                         Log In
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => {navigate(navigationURL)}} className="signin-button">
+                    <button onClick={() => {navigate(navigationURLsignup)}} className="signin-button">
                         Sign Up
                     </button>
                 </li>
