@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import PageHeader from "../PageHeader";
 import './../sign-in.css';
@@ -10,6 +10,24 @@ const CourseCreation = () => {
     const { user } = useParams();
     const initState = {courseID: '', courseName: '', minGroupSize: '', maxGroupSize: ''};
     const [inputs, setInputs] = useState(initState);
+    const [courses,setCourses]=useState<any>([])
+    var fullArr: any[] = [];
+    const fetchProfessors = async() => {
+        const response=firebase.db.collection('professors').doc(user);
+        await response.get()
+        .then(doc => {
+            const data = doc.data();
+            if (data) {
+                for (var x = 0; x < data.courses.length; x++) {
+                    fullArr.push(data.courses[x]);
+                }
+            }
+            setCourses([...courses, fullArr]);
+        })
+    }
+    useEffect(() => {
+    fetchProfessors();
+    }, [])
     const handleChange = e => {
         //console.log(e.target);
         const {name, value} = e.target
@@ -24,8 +42,12 @@ const CourseCreation = () => {
             max: inputs.maxGroupSize,
         })
         // Here need to update groups to have the new group
+        var tempCourse = courses;
+        console.log("Initial Courses: ", tempCourse)
+        tempCourse.push(inputs.courseID)
+        console.log("Secondary Courses: ", tempCourse)
         firebase.db.collection("professors").doc(user).update({
-            groups: [null],
+            courses: tempCourse,
         })
         navigate('/p/' + user + '/courses');
     }
