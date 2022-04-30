@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './student-styles.css';
 import { useNavigate, useParams } from "react-router-dom";
 import BottomNav from "../BottomNav";
@@ -8,8 +8,9 @@ import StudentDisplayHeader from "./StudentDisplayHeader";
 const StudentDisplay = ({studentID, name, major, year, availability}) => {
     console.log("StudDisplay: ", availability);
     const navigate = useNavigate();
-    const { userID, courseID } = useParams();
-    const navigationURL = '/' + userID + '/' + courseID + '/student/' + studentID;
+    const { user, courseID } = useParams();
+    const [invited, setInvited] = useState(false);
+    const navigationURL = '/' + user + '/' + courseID + '/student/' + studentID;
     return (
         <div>
             <button onClick={() => {navigate(navigationURL)}} className="student-display">
@@ -24,7 +25,8 @@ const StudentDisplay = ({studentID, name, major, year, availability}) => {
                     e.stopPropagation();
                     // handle invitation here, need to add logic 
                     // so it only shows button if you're in a group
-                    }} className="students-button">Invite to Your Team</button>
+                    setInvited(!invited);
+                    }} className="students-button">{invited ? "Invitation Pending" : "Invite to Your Team"}</button>
             </button>
         </div>
     )
