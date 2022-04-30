@@ -11,7 +11,7 @@ const Groups = () => {
     const [groups,setGroups]=useState<any>([])
     var fullArr: any[] = []
     const fetchGroups = async() => {
-        const response=firebase.db.collection('groups');
+        const response=firebase.db.collection('groups').where("courseID", "==", courseID);
         const data = await response.get();
         console.log(data.docs);
         data.docs.forEach(item=>{

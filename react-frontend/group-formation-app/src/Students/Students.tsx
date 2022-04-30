@@ -18,7 +18,7 @@ const Students = () => {
         data.docs.forEach(item=>{
             //console.log(item.data());
             //console.log(item.data().courses);
-            if (item.data().courses.includes('CS 4261')) {
+            if (item.data().courses.includes(courseID)) {
                 //console.log("Worked");
                 fullArr.push(item.data());
             }
