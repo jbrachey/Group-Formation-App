@@ -7,16 +7,28 @@ import React,{useState,useEffect} from 'react';
 
 const Groups = () => {
     const { courseID } = useParams();
+    /*
+    firebase.db.collection("groups").doc("Concrete Conglomerate").set({
+        goals: "Get an A",
+        groupID: "Concrete Conglomerate",
+        name: "Concrete Conglomerate",
+        max: 5,
+        numStudents: 4,
+        neededExp: "Nothing were perfect",
+        random: false,
+        availability: {"Monday": [true, true, true, true, true, true, true, true, true, true, true, true, true, true], "Tuesday":[true, true, true, true, true, true, true, true, true, true, true, true, true, true],"Wednesday": [true, true, true, true, true, true, true, true, true, true, true, true, true, true], "Thursday":[true, true, true, true, true, true, true, true, true, true, true, true, true, true],"Friday": [true, true, true, true, true, true, true, true, true, true, true, true, true, true], "Saturday":[true, true, true, true, true, true, true, true, true, true, true, true, true, true],"Sunday": [true, true, true, true, true, true, true, true, true, true, true, true, true, true]}
+    })
+    */
     //const groups = getGroups(courseID);
     const [groups,setGroups]=useState<any>([])
     var fullArr: any[] = []
     const fetchGroups = async() => {
         const response=firebase.db.collection('groups').where("courseID", "==", courseID);
         const data = await response.get();
-        console.log(data.docs);
+        //console.log(data.docs);
         data.docs.forEach(item=>{
-            console.log(item.data());
-            console.log(item.data().courses);
+            //console.log(item.data());
+            //console.log(item.data().courses);
             fullArr.push(item.data());
         })
         setGroups([...groups, fullArr])
@@ -25,15 +37,17 @@ const Groups = () => {
     useEffect(() => {
     fetchGroups();
     }, [])
-    console.log('Groups:', groups);
+    console.log(groups);
+    console.log('Groups:', groups[0]);
     return (
         <div>
             <PageHeader title={"Open Groups"} hasBackArrow={false} />
             <ul>
                 {groups[0] && groups[0].map(group => {
+                    console.log("Inner group: ", group.requests);
                     return (
                     <li key={group.groupID}>
-                        <GroupDisplay groupID={group.groupID} name={group.name} availability={group.availability} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents}/>
+                        <GroupDisplay groupID={group.groupID} name={group.name} availability={group.availability} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents} requests={group.requests} />
                     </li>
                     )
                 })}

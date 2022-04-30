@@ -7,7 +7,7 @@ import React,{useState,useEffect} from 'react';
 import PageHeader from "../PageHeader";
 
 const GroupDetailedInfo = () => {
-    const { courseID, groupID } = useParams();
+    const { user, courseID, groupID } = useParams();
     //const groupInfo = getGroupInfo(courseID, groupID);
     //const availability = { availability: groupInfo.availability };
     const [groups,setGroups]=useState<any>([])
@@ -29,6 +29,22 @@ const GroupDetailedInfo = () => {
     fetchGroups();
     }, [])
     console.log('Groups:', groups);
+    const checkRequests = () => {
+        if (groups[0].requests.includes(user)) {
+            return (<button className="groups-button">Request Pending</button>)
+        } else {
+            return (<button onClick={sendRequest} className="groups-button">Request to Join Team</button>)
+        }
+    }
+    const sendRequest = () => {
+        var currRequests = groups[0].requests;
+        console.log("Success1")
+        currRequests.push(user)
+        firebase.db.collection("groups").doc(groupID).update({
+            requests: currRequests,
+        })
+        console.log("Success2")
+    }
     if (groups[0]) {
     const availability = groups[0].availability;
     return (
@@ -39,7 +55,7 @@ const GroupDetailedInfo = () => {
             <div>Needed experience: {groups[0].neededExp}</div>
             <br/>
             <ScheduleView {...availability}/>
-            <button className="detailed-groups-button">Request to Join Team</button>
+            {checkRequests()}
             <BottomNav/>
         </div>
     )
