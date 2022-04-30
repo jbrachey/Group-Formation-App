@@ -1,10 +1,10 @@
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 
-const CourseDisplay = ({name, courseID}) => {
+const CourseDisplay = ({name, courseID, isProfessor}) => {
     const navigate = useNavigate();
     const { user } = useParams();
-    const navigationURL = '/' + user + '/' + courseID + '/groups';
+    const navigationURL = isProfessor ? ('/p/' + user + '/' + courseID) : '/' + user + '/' + courseID + '/groups';
     return (
         <div>
             <button onClick={() => {navigate(navigationURL)}} className="group-display">

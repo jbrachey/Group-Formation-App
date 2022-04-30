@@ -1,21 +1,20 @@
-
 import { useParams } from "react-router";
 import { useNavigate } from 'react-router-dom';
 import PageHeader from "../PageHeader";
-import CourseDisplay from "./CourseDisplay";
+import CourseDisplay from "./../Courses/CourseDisplay";
 import firebase from './../firebase.js';
 import React,{useState,useEffect} from 'react';
 
-const CoursesHome = () => {
+const ProfessorCoursesHome = () => {
     const navigate = useNavigate();
     const { user } = useParams();
-    console.log("StudID: ",user);
+    console.log("ProfID: ",user);
     //const courses = getCourses(studentID);
     const [courses,setCourses]=useState<any>([])
     var fullArr: any[] = []
     var courseArr: any[] = []
-    const fetchStudents = async() => {
-        const response=firebase.db.collection('students').doc(user);
+    const fetchProfessors = async() => {
+        const response=firebase.db.collection('professors').doc(user);
         await response.get()
         .then(doc => {
             const data = doc.data();
@@ -41,7 +40,7 @@ const CoursesHome = () => {
     
     }
     useEffect(() => {
-    fetchStudents();
+    fetchProfessors();
     }, [])
     console.log('Courses:', courses);
     return(
@@ -51,11 +50,12 @@ const CoursesHome = () => {
                 {courses[0] && courses[0].map(course => {
                     return (
                     <li key={course.courseID}>
-                        <CourseDisplay name={course.name} courseID={course.courseID} isProfessor={false}/>
+                        <CourseDisplay name={course.name} courseID={course.courseID} isProfessor={true}/>
                     </li>
                     )
                 })}
             </ul>
+            <button onClick={() => navigate('/p/' + user + '/coursecreation')}>Create Course</button>
         </div>
     )
 }
@@ -91,4 +91,4 @@ const getCourses = (studentID) => {
 }
 */
 
-export default CoursesHome;
+export default ProfessorCoursesHome;

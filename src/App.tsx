@@ -11,13 +11,23 @@ import GroupDetailedInfo from './Groups/GroupDetailedInfo';
 import "./index.css";
 import StudentDetailedInfo from './Students/StudentDetailedInfo';
 import SignIn from './SignIn';
+import FirstPage from './FirstPage';
+import ProfessorSignIn from './Professor/ProfessorSignIn';
+import ProfessorCoursesHome from './Professor/ProfessorCoursesHome';
+import ProfessorCourseView from './Professor/ProfessorCourseView';
+import CourseCreation from './Professor/CourseCreation';
 
 function App() {
   return (
     <div className="App">
       <Routes>
         {/* Eventually the path / will take you to login */}
-        <Route path="/" element={<SignIn/>} />
+        <Route path="/" element={<FirstPage/>} />
+        <Route path="/studentsignin" element={<SignIn/>} />
+        <Route path="/professorsignin" element={<ProfessorSignIn/>} />
+        <Route path="/p/:user/courses" element={<ProfessorCoursesHome/>} />
+        <Route path="/p/:user/:courseID" element={<ProfessorCourseView/>} />
+        <Route path="/p/:user/coursecreation" element={<CourseCreation/>} />
         <Route path="/:user/courses" element={<CoursesHome />} />
         <Route path="/:user/:courseID/groups" element={<Groups/>} />
         <Route path="/:user/:courseID/group/:groupID" element={<GroupDetailedInfo/>} />

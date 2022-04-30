@@ -45,7 +45,7 @@ const SignIn = ({}) => {
     }
     return (
         <div>
-            <PageHeader title={"Group Formation Application"} hasBackArrow={false} />
+            <PageHeader title={"Group Formation App"} hasBackArrow={false} />
             <ul>
                 <li>
                     <label className="signin-info">Student ID:</label>
