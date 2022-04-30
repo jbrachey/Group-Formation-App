@@ -1,0 +1,44 @@
+.signin-display {
+    background-color: white;
+    border-width: 2px;
+    border-color: black;
+    align-items: center;
+    font-size: 32px;
+    width: 40%;
+    border-radius: 50px;
+    color: black;
+    padding: 0;
+    height: fit-content;
+    margin-bottom: 20px;
+}
+
+.signin-info {
+    font-size: 16px;
+}
+
+.signin-button {
+    background-color: white;
+    border-width: 2px;
+    border-color: black;
+    align-items: center;
+    font-size: 32px;
+    width: 40%;
+    border-radius: 50px;
+    color: black;
+    padding: 0;
+    height: fit-content;
+    margin-bottom: 20px;
+}
+
+.header {
+    border-bottom: 1px solid black;
+    width: 100%;
+    justify-content: center;
+}
+
+.header-contents {
+    width: 85%;
+    margin: auto;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
