@@ -86,3 +86,16 @@
         font-size: 3vw;
     }
 }
+
+.invitation-decline {
+    background-color: red;
+    margin-left: 1vw;
+}
+
+.invitation-label {
+    margin-right: 2vw;
+}
+
+.invitation {
+    margin-bottom: 2vh;
+}

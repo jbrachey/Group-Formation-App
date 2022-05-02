@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import StudentDisplay from "./StudentDisplay";
 import BottomNav from "../BottomNav";
 import PageHeader from "../PageHeader";
@@ -11,6 +11,8 @@ const Students = () => {
     const [students,setStudents]=useState<any>([])
     const [profiles,setProfiles]=useState<any>([])
     const [userIsInGroup, setUserIsInGroup] = useState(true);
+    const [groupName, setGroupName] = useState("");
+    const navigate = useNavigate();
     var fullArr: any[] = []
     const fetchStudents = async() => {
         const response=firebase.db.collection('students');
@@ -43,10 +45,19 @@ const Students = () => {
                     if (data.team == "None") {
                         setUserIsInGroup(false);
                     } else {
+                        setGroupName(data.team);
                         setUserIsInGroup(true);
                     }
                 }
-                proMap[item.data().studentID] = item.data().availability;
+                const arr: any[] = []
+                arr.push(item.data().availability);
+                const group = item.data().team;
+                if (group == 'None') {
+                    arr.push(false)
+                } else {
+                    arr.push(true)
+                }
+                proMap[item.data().studentID] = arr;
             }
         })
         setProfiles([...profiles, proMap])
@@ -60,15 +71,23 @@ const Students = () => {
             <PageHeader title={"Available Students"} hasBackArrow={false} />
             <ul>
                 {students[0] && profiles[0] && students[0].map(student=> {
-                    if (student.studentID !== user) {
+                    console.log('student: ', student)
+                    console.log('profiles: ', profiles)
+                    if (student.studentID !== user && !profiles[0][student.studentID][1]) {
                         return (
                             <li key={student.studentID}>
-                                <StudentDisplay studentID={student.studentID} name={student.name} major={student.major} year={student.year} availability={profiles[0][student.studentID]} userIsInGroup={userIsInGroup}/>
+                                <StudentDisplay studentID={student.studentID} name={student.name} major={student.major} year={student.year} availability={profiles[0][student.studentID][0]} userIsInGroup={userIsInGroup} groupName={groupName}/>
                             </li>
                         )
                     }
                 })}
             </ul>
+            {!userIsInGroup && (
+                <div>
+                    <br/>
+                    <button onClick={() => navigate('/' + user + '/' + courseID + '/viewinvitations')}>View Invitations</button>
+                </div>
+            )}
             <BottomNav/>
         </div>
 
