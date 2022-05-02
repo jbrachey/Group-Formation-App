@@ -14,7 +14,7 @@ const SignIn = ({}) => {
         const {name, value} = e.target
         setInputs(prev => ({...prev, [name]: value}))
     }
-    const navigationURLsignup = '/' + 'ProfileCreation';
+    const navigationURLsignup = '/' + 'accountcreation';
     const [students,setStudents]=useState<any>([])
     var fullArr: any[] = []
     const fetchStudents = async() => {

@@ -36,7 +36,7 @@ const Students = () => {
         const data2 = await response2.get();
         //console.log(data2.docs);
         data2.docs.forEach(item=>{
-            if (item.data().course === 'CS 4261') {
+            if (item.data().course === courseID) {
                 proMap[item.data().studentID] = item.data().availability;
             }
         })

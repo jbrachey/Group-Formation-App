@@ -5,7 +5,7 @@ import './sign-in.css';
 import firebase from './firebase.js';
 import React,{useState,useEffect} from 'react';
 
-const ProfileCreation = ({}) => {
+const AccountCreation = ({}) => {
     const navigate = useNavigate();
     const { user } = useParams();
     const navigationURL = '/' + user + '/courses';
@@ -31,7 +31,7 @@ const ProfileCreation = ({}) => {
     }
     return (
         <div>
-            <PageHeader title={"Profile Creation"} hasBackArrow={false} />
+            <PageHeader title={"Account Creation"} hasBackArrow={false} />
             <ul>
                 <li>
                     <label className="signin-info">Name:</label>
@@ -72,4 +72,4 @@ const ProfileCreation = ({}) => {
     )
 }
 
-export default ProfileCreation;
+export default AccountCreation;
