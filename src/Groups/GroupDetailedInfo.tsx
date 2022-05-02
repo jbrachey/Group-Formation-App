@@ -28,6 +28,10 @@ const GroupDetailedInfo = () => {
     useEffect(() => {
     fetchGroups();
     }, [])
+
+
+
+
     console.log('Groups:', groups);
     const checkRequests = () => {
         if (groups[0].requests.includes(user)) {
@@ -55,7 +59,7 @@ const GroupDetailedInfo = () => {
             <div>Needed experience: {groups[0].neededExp}</div>
             <br/>
             <ScheduleView {...availability}/>
-            {checkRequests()}
+            {/*checkRequests()*/}
             <BottomNav/>
         </div>
     )

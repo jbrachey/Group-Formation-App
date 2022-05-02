@@ -31,22 +31,21 @@ const GroupDisplay = ({groupID, name, availability, neededExp, numStudents, tota
     }, [])
 
     const checkRequests = () => {
-        if (requests.includes(user)) {
-            return (<button className="groups-button">Request Pending</button>)
-        } else {
-            return (<button onClick={sendRequest} className="groups-button">Request to Join Team</button>)
-        }
-    }
-    const sendRequest = () => {
         if (user != undefined && courseID != undefined) {
-            let currRequests = requests;
-            let m = {}
-            m['profileID'] = user + courseID;
-            m['profileName'] = profileName;
-            currRequests.push(m)
-            firebase.db.collection("groups").doc(groupID).update({
-                requests: currRequests,
-            })
+            let requested = false;
+            for (let x = 0; x < requests.length; x++) {
+                if (requests[x]['profileID'] == (user + courseID)) {
+                    requested = true;
+                }
+            }
+            if (requested) {
+                return (<button onClick={e => e.stopPropagation()} className="groups-button">Request Pending</button>)
+            } else {
+                return (<button onClick={e => {
+                    e.stopPropagation();
+                    sendRequest(user, courseID, requests, profileName, groupID);
+                }} className="groups-button">Request to Join Team</button>)
+            }
         }
     }
     return (
@@ -61,6 +60,19 @@ const GroupDisplay = ({groupID, name, availability, neededExp, numStudents, tota
             </button>
         </div>
     )
+}
+
+export const sendRequest = (user, courseID, requests, profileName, groupID) => {
+    if (user != undefined && courseID != undefined) {
+        let currRequests = requests;
+        let m = {};
+        m['profileID'] = user + courseID;
+        m['profileName'] = profileName;
+        currRequests.push(m)
+        firebase.db.collection("groups").doc(groupID).update({
+            requests: currRequests,
+        })
+    }
 }
 
 export default GroupDisplay;
