@@ -68,19 +68,20 @@ const Groups = () => {
             <PageHeader title={"Open Groups"} hasBackArrow={false} />
             {!userIsInGroup && ( <ul>
                 {groups[0] && groups[0].map(group => {
-                    console.log("Inner group: ", group.requests);
+                    console.log("group: ", group)
                     return (
-                    <li key={group.groupID}>
-                        <GroupDisplay groupID={group.groupID} name={group.name} availability={group.availability} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents} requests={group.requests} />
-                    </li>
+                        <li key={group.groupID}>
+                            <GroupDisplay groupID={group.groupID} name={group.name} availability={group.availability} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents} requests={group.requests} />
+                        </li>
                     )
-                }) && 
+                })}
+            </ul>)}
+            {!userIsInGroup && 
                 (
                     <div>
                         <button onClick={() => navigate('/' + user + '/' + courseID + '/groupcreation')}>Create Group</button>
                     </div>
                 )}
-            </ul>)}
             {userIsInGroup && ( 
                 <div>
                     <label>You are in group {groupName}!</label>

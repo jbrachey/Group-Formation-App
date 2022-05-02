@@ -5,7 +5,7 @@ import BottomNav from "../BottomNav";
 import ConciseScheduleView from "../Schedule/ConciseScheduleView";
 import StudentDisplayHeader from "./StudentDisplayHeader";
 
-const StudentDisplay = ({studentID, name, major, year, availability}) => {
+const StudentDisplay = ({studentID, name, major, year, availability, userIsInGroup}) => {
     console.log("StudDisplay: ", availability);
     const navigate = useNavigate();
     const { user, courseID } = useParams();
@@ -21,12 +21,14 @@ const StudentDisplay = ({studentID, name, major, year, availability}) => {
                 <br/>
                 <ConciseScheduleView availability={availability} />
                 <br/>
-                <button onClick={e => {
-                    e.stopPropagation();
-                    // handle invitation here, need to add logic 
-                    // so it only shows button if you're in a group
-                    setInvited(!invited);
-                    }} className="students-button">{invited ? "Invitation Pending" : "Invite to Your Team"}</button>
+                {userIsInGroup && (
+                    <button onClick={e => {
+                        e.stopPropagation();
+                        // handle invitation here, need to add logic 
+                        // so it only shows button if you're in a group
+                        setInvited(!invited);
+                        }} className="students-button">{invited ? "Invitation Pending" : "Invite to Your Team"}</button>
+                )}
             </button>
         </div>
     )

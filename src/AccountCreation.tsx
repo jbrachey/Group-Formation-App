@@ -1,4 +1,3 @@
-import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "./PageHeader";
 import './sign-in.css';
@@ -7,8 +6,6 @@ import React,{useState,useEffect} from 'react';
 
 const AccountCreation = ({}) => {
     const navigate = useNavigate();
-    const { user } = useParams();
-    const navigationURL = '/' + user + '/courses';
     const initState = {name: '', major: '', year: '', email: '', studentID: '', password: ''};
     const [inputs, setInputs] = useState(initState);
     const handleChange = e => {
@@ -27,7 +24,7 @@ const AccountCreation = ({}) => {
             name: inputs.name,
             availability: true
         })
-        navigate(navigationURL)
+        navigate('/' + inputs.studentID + '/courses');
     }
     return (
         <div>

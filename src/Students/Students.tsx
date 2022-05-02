@@ -10,6 +10,7 @@ const Students = () => {
     //const students = getStudents(courseID);
     const [students,setStudents]=useState<any>([])
     const [profiles,setProfiles]=useState<any>([])
+    const [userIsInGroup, setUserIsInGroup] = useState(true);
     var fullArr: any[] = []
     const fetchStudents = async() => {
         const response=firebase.db.collection('students');
@@ -36,7 +37,15 @@ const Students = () => {
         const data2 = await response2.get();
         //console.log(data2.docs);
         data2.docs.forEach(item=>{
-            if (item.data().course === courseID) {
+            const data = item.data()
+            if (data.course === courseID) {
+                if (data.studentID === user) {
+                    if (data.team == "None") {
+                        setUserIsInGroup(false);
+                    } else {
+                        setUserIsInGroup(true);
+                    }
+                }
                 proMap[item.data().studentID] = item.data().availability;
             }
         })
@@ -54,7 +63,7 @@ const Students = () => {
                     if (student.studentID !== user) {
                         return (
                             <li key={student.studentID}>
-                                <StudentDisplay studentID={student.studentID} name={student.name} major={student.major} year={student.year} availability={profiles[0][student.studentID]}/>
+                                <StudentDisplay studentID={student.studentID} name={student.name} major={student.major} year={student.year} availability={profiles[0][student.studentID]} userIsInGroup={userIsInGroup}/>
                             </li>
                         )
                     }
