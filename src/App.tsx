@@ -19,6 +19,7 @@ import CourseCreation from './Professor/CourseCreation';
 import ProfileCreation from './Students/ProfileCreation';
 import ProfileUpdate from './Students/ProfileUpdate';
 import JoinCourse from './Students/JoinCourse';
+import GroupUpdate from './Groups/GroupUpdate';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/:user/:courseID/makeprofile" element={<ProfileCreation/>} />
         <Route path="/:user/:courseID/group/:groupID" element={<GroupDetailedInfo/>} />
         <Route path="/:user/:courseID/groupcreation" element={<GroupCreation/>} />
+        <Route path="/:user/:courseID/:groupname/groupupdate" element={<GroupUpdate/>} />
         <Route path="/accountcreation" element={<AccountCreation/>} />
         <Route path="/:user/:courseID/profile" element={<ProfileUpdate/>} />
         <Route path="/:user/:courseID/students" element={<Students/>} />

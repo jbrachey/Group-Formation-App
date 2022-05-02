@@ -1,7 +1,10 @@
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import './../App.css';
+import PageHeader from './../PageHeader';
 import firebase from './../firebase.js';
+import './../Groups/group-styles.css';
+import { useNavigate, useParams } from "react-router";
+import BottomNav from "../BottomNav";
 
 let falses = [];
 for (let days = 0; days < 7; days++) {
@@ -11,14 +14,19 @@ for (let days = 0; days < 7; days++) {
     }
     falses.push(falseArr);
 }
-const GroupCreation = () => {
-    const [name, setName] = useState("");
-    const [goals, setGoals] = useState("");
-    const [neededExp, setNeededExp] = useState("");
-    const [availability, setAvailability] = useState(falses);
-    const [filledRandomly, setFilledRandomly] = useState(false);
 
-    const { user, courseID } = useParams();
+const GroupUpdate = () => {
+    const [name, setName] = useState("");
+    const [nameChanged, setNameChanged] = useState(false);
+    const [goals, setGoals] = useState("");
+    const [goalsChanged, setGoalsChanged] = useState(false);
+    const [neededExp, setNeededExp] = useState("");
+    const [neededExpChanged, setNeededExpChanged] = useState(false);
+    const [availability, setAvailability] = useState(falses);
+    const [availabilityChanged, setAvailabilityChanged] = useState(false);
+
+    const { user, courseID, groupname } = useParams();
+
     const navigate = useNavigate();
 
     const changeAvailability = (day, hour) => {
@@ -29,9 +37,40 @@ const GroupCreation = () => {
             copyArr[day][hour] = true;
         }
         setAvailability(copyArr);
+        setAvailabilityChanged(true);
     }
 
-    const createGroup = async (name, goals, experience, availability) => {
+    const fetchGroup = async () => {
+        console.log('fetch group')
+        const response=firebase.db.collection('groups').doc(groupname + courseID)
+        await response.get()
+        .then(doc => {
+            const data = doc.data();
+            console.log(data)
+            if (data) {
+                setName(data.name);
+                setGoals(data.goals);
+                setNeededExp(data.neededExp)
+                const availability = data.availability;
+                const availArr = [];
+                availArr.push(availability['Monday'])
+                availArr.push(availability['Tuesday'])
+                availArr.push(availability['Wednesday'])
+                availArr.push(availability['Thursday'])
+                availArr.push(availability['Friday'])
+                availArr.push(availability['Saturday'])
+                availArr.push(availability['Sunday'])
+                setAvailability(availArr);
+            }
+            
+        })
+    }
+
+    useEffect(() => {
+        fetchGroup();
+        }, [])
+
+    const updateGroup = async (name, goals, neededExp, availability) => {
         const availMap = {}
         availMap["Monday"] = availability[0];
         availMap["Tuesday"] = availability[1];
@@ -40,40 +79,47 @@ const GroupCreation = () => {
         availMap["Friday"] = availability[4];
         availMap["Saturday"] = availability[5];
         availMap["Sunday"] = availability[6];
-        firebase.db.collection("groups").doc(name + courseID).set({
-            courseID: courseID,
-            neededExp: experience,
-            goals: goals,
-            requests: [null],
-            random: false,
-            groupID: name + courseID,
-            availability: availMap,
-            max: 5,
-            name: name,
-            numStudents: 1
-        });
-        firebase.db.collection('profiles').doc(user + courseID).update({
-            team: name,
-        });
+        if (nameChanged) {
+            firebase.db.collection("groups").doc(groupname + courseID).set({
+                name: name,
+                goals: goals,
+                neededExp: neededExp,
+                availability: availMap
+            });
+        } else {
+            firebase.db.collection("groups").doc(groupname + courseID).update({
+                name: name,
+                goals: goals,
+                neededExp: neededExp,
+                availability: availMap
+            });
+        }
         navigate('/' + user + '/' + courseID + '/groups')
     }
 
-    return(
+    return (
         <div className="group-creation-form">
-            <h1>Group Creation</h1>
-            <label htmlFor="gname">Group Name:</label>
+            <PageHeader title={"Profile Creation"} hasBackArrow={false} />
+            <label htmlFor="name">Name:</label>
             <br></br>
-            <input type="text" id="gname" name="gname" onChange={e => setName(e.target.value)}/>
-            <br></br>
-            <br></br>
-            <label htmlFor="goals">Group Goals:</label>
-            <br></br>
-            <input type="text" id="goals" name="goals" onChange={e => setGoals(e.target.value)}/>
+            <input value={name}type="text" id="name" name="name" onChange={e => {
+                setName(e.target.value);
+                setNameChanged(true);
+                }}/>
             <br></br>
             <br></br>
-            <label htmlFor="needed">Needed Experience/Skills:</label>
+            <label htmlFor="goals">Goals:</label>
             <br></br>
-            <input type="text" id="needed" name="needed" onChange={e => setNeededExp(e.target.value)}/>
+            <input value={goals} type="text" id="goals" name="goals" onChange={e => {
+                setGoals(e.target.value);
+                setGoalsChanged(true)}}/>
+            <br></br>
+            <br></br>
+            <label htmlFor="neededExp">Needed Experience:</label>
+            <br></br>
+            <input value={neededExp} type="text" id="neededExp" name="neededExp" onChange={e => {
+                setNeededExp(e.target.value);
+                setNeededExpChanged(true)}}/>
             <br></br>
             <br></br>
             <label htmlFor="schedule">Schedule Availability:</label>
@@ -218,9 +264,12 @@ const GroupCreation = () => {
             <br></br>
             <br></br>
             <br></br>
-            <button onClick={() => {createGroup(name, goals, neededExp, availability, filledRandomly)}} className="App-CreateButton">Create Group</button>
+            { (nameChanged || goalsChanged || neededExpChanged || availabilityChanged) &&
+            <button onClick={() => {updateGroup(name, goals, neededExp, availability)}} className="App-CreateButton">Update Group</button>
+            }
+            <BottomNav />
         </div>
     )
 }
 
-export default GroupCreation;
+export default GroupUpdate;

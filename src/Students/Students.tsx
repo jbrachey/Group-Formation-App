@@ -51,11 +51,13 @@ const Students = () => {
             <PageHeader title={"Available Students"} hasBackArrow={false} />
             <ul>
                 {students[0] && profiles[0] && students[0].map(student=> {
-                    return (
-                    <li key={student.studentID}>
-                        <StudentDisplay studentID={student.studentID} name={student.name} major={student.major} year={student.year} availability={profiles[0][student.studentID]}/>
-                    </li>
-                    )
+                    if (student.studentID !== user) {
+                        return (
+                            <li key={student.studentID}>
+                                <StudentDisplay studentID={student.studentID} name={student.name} major={student.major} year={student.year} availability={profiles[0][student.studentID]}/>
+                            </li>
+                        )
+                    }
                 })}
             </ul>
             <BottomNav/>

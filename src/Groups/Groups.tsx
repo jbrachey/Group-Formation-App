@@ -1,12 +1,12 @@
 import BottomNav from "../BottomNav";
 import GroupDisplay from "./GroupDisplay";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import PageHeader from "../PageHeader";
 import firebase from './../firebase.js';
 import React,{useState,useEffect} from 'react';
 
 const Groups = () => {
-    const { courseID } = useParams();
+    const { user, courseID } = useParams();
     /*
     firebase.db.collection("groups").doc("Concrete Conglomerate").set({
         goals: "Get an A",
@@ -21,6 +21,9 @@ const Groups = () => {
     */
     //const groups = getGroups(courseID);
     const [groups,setGroups]=useState<any>([])
+    const [userIsInGroup, setUserIsInGroup] = useState(false);
+    const [groupName, setGroupName] = useState('');
+    const navigate = useNavigate();
     var fullArr: any[] = []
     const fetchGroups = async() => {
         const response=firebase.db.collection('groups').where("courseID", "==", courseID);
@@ -37,12 +40,33 @@ const Groups = () => {
     useEffect(() => {
     fetchGroups();
     }, [])
+    const inGroup = async () => {
+        if (user != undefined && courseID != undefined) {
+            const response=firebase.db.collection('profiles').doc(user + courseID);
+            await response.get()
+            .then(doc => {
+                if (!doc.exists) {
+                    setUserIsInGroup(false);
+                }
+                const data = doc.data();
+                if (data && data.team != 'None') {
+                    setUserIsInGroup(true);
+                    setGroupName(data.team);
+                } else {
+                    setUserIsInGroup(false);
+                }
+            })
+        }
+    }
+    useEffect(() => {
+        inGroup();
+        }, [])
     console.log(groups);
     console.log('Groups:', groups[0]);
     return (
         <div>
             <PageHeader title={"Open Groups"} hasBackArrow={false} />
-            <ul>
+            {!userIsInGroup && ( <ul>
                 {groups[0] && groups[0].map(group => {
                     console.log("Inner group: ", group.requests);
                     return (
@@ -50,8 +74,21 @@ const Groups = () => {
                         <GroupDisplay groupID={group.groupID} name={group.name} availability={group.availability} neededExp={group.neededExp} numStudents={group.numStudents} totalStudents={group.totalStudents} requests={group.requests} />
                     </li>
                     )
-                })}
-            </ul>
+                }) && 
+                (
+                    <div>
+                        <button onClick={() => navigate('/' + user + '/' + courseID + '/groupcreation')}>Create Group</button>
+                    </div>
+                )}
+            </ul>)}
+            {userIsInGroup && ( 
+                <div>
+                    <label>You are in group {groupName}!</label>
+                    <br/>
+                    <br/>
+                    <button onClick={() => navigate('/' + user + '/' + courseID + '/' + groupName + '/groupupdate')}>Update Group</button>
+                </div>
+            )}
             <BottomNav/>
         </div>
 
