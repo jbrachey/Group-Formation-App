@@ -7,12 +7,11 @@ import StudentDisplayHeader from "./StudentDisplayHeader";
 import firebase from './../firebase.js';
 
 const StudentDisplay = ({studentID, name, major, year, availability, userIsInGroup, groupName}) => {
-    console.log("StudDisplay: ", availability);
     const navigate = useNavigate();
     const { user, courseID } = useParams();
     const [invited, setInvited] = useState(false);
     const [invitations, setInvitations] = useState<any>([]);
-    const navigationURL = '/' + user + '/' + courseID + '/student/' + studentID;
+    const navigationURL = '/' + user + '/' + courseID + '/student/' + studentID + '/' + groupName;
 
     var fullArr: any[] = [];
     const fetchInvitations = async () => {
@@ -35,28 +34,6 @@ const StudentDisplay = ({studentID, name, major, year, availability, userIsInGro
         fetchInvitations();
         }, [])
 
-    const handleInvitation = (user, courseID, groupName) => {
-        setInvited(true);
-        // Here need to update invitations to have new invitation
-        let tempInvitations: any = [];
-        if (invitations != null && invitations[0] != null) {
-            for (let x = 0; x < invitations.length; x++) {
-                if (typeof invitations[x] == "object") {
-                    for (let y = 0; y < invitations[x].length; y++) {
-                        tempInvitations.push(invitations[x][y])
-                    }
-                } else {
-                    tempInvitations.push(invitations[x]);
-                }
-            }
-        }
-        tempInvitations.push(groupName);
-        console.log('user + courseID: ', user + courseID)
-        console.log('invitations: ', tempInvitations)
-        firebase.db.collection("profiles").doc(user + courseID).update({
-            invites: tempInvitations,
-        })
-    }
 
     return (
         <div>
@@ -72,13 +49,34 @@ const StudentDisplay = ({studentID, name, major, year, availability, userIsInGro
                     <button onClick={e => {
                         if (!invited) {
                             e.stopPropagation();
-                            handleInvitation(studentID, courseID, groupName);
+                            setInvited(true);
+                            handleInvitation(studentID, courseID, groupName, invitations);
                         }
                         }} className="students-button">{invited ? "Invitation Pending" : "Invite to Your Team"}</button>
                 )}
             </button>
         </div>
     )
+}
+
+export const handleInvitation = (user, courseID, groupName, invitations) => {
+    // Here need to update invitations to have new invitation
+    let tempInvitations: any = [];
+    if (invitations != null && invitations[0] != null) {
+        for (let x = 0; x < invitations.length; x++) {
+            if (typeof invitations[x] == "object") {
+                for (let y = 0; y < invitations[x].length; y++) {
+                    tempInvitations.push(invitations[x][y])
+                }
+            } else {
+                tempInvitations.push(invitations[x]);
+            }
+        }
+    }
+    tempInvitations.push(groupName);
+    firebase.db.collection("profiles").doc(user + courseID).update({
+        invites: tempInvitations,
+    })
 }
 
 export default StudentDisplay;

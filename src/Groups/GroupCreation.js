@@ -44,7 +44,7 @@ const GroupCreation = () => {
             courseID: courseID,
             neededExp: experience,
             goals: goals,
-            requests: [null],
+            requests: [],
             random: false,
             groupID: name + courseID,
             availability: availMap,

@@ -5,13 +5,16 @@ import firebase from './../firebase.js';
 import React,{useState,useEffect} from 'react';
 import PageHeader from "../PageHeader";
 import './../Groups/group-styles.css';
+import { handleInvitation } from "./StudentDisplay";
 
 const StudentDetailedInfo = () => {
-    const { courseID, studentID } = useParams();
+    const { user, courseID, studentID, groupname } = useParams();
     //const studentInfo = getStudentInfo(courseID, studentID);
     //const availability = { availability: studentInfo.availability };
     const [students,setStudents]=useState<any>([])
     const [profiles,setProfiles]=useState<any>([])
+    const [invitations, setInvitations] = useState<any>([]);
+    const [invited, setInvited] = useState(false);
     //var fullArr: any[] = []
     const fetchStudents = async() => {
         const response=firebase.db.collection('students');
@@ -40,6 +43,13 @@ const StudentDetailedInfo = () => {
             if (item.data().studentID === studentID && item.data().course === courseID) {
                 console.log("Worked Prof");
                 setProfiles([...profiles, item.data()])
+                const invites = item.data().invites;
+                for (let x = 0; x < invites.length; x++) {
+                    if (invites[x] == groupname) {
+                        setInvited(true);
+                    }
+                }
+                setInvitations(item.data().invites);
             }
         })
     }
@@ -67,7 +77,12 @@ const StudentDetailedInfo = () => {
                 <div>Experience/Skills: {profiles[0].experience}</div>
                 <br/>
                 <div>Interests: {profiles[0].interests}</div>
-                <button className="detailed-groups-button">Invite to Join Your Team</button>
+                {groupname != undefined && (
+                    <button onClick={() => {
+                        setInvited(true);
+                        handleInvitation(studentID, courseID, groupname, invitations);
+                    }} className="detailed-groups-button">{invited ? "Invitation Pending" : "Invite to Your Team"}</button>
+                )}
                 <BottomNav/>
             </div>
         )

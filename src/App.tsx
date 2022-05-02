@@ -44,7 +44,7 @@ function App() {
         <Route path="/:user/:courseID/viewinvitations" element={<ViewInvitations/>} />
         <Route path="/:user/:courseID/profile" element={<ProfileUpdate/>} />
         <Route path="/:user/:courseID/students" element={<Students/>} />
-        <Route path="/:user/:courseID/student/:studentID" element={<StudentDetailedInfo/>} />
+        <Route path="/:user/:courseID/student/:studentID/:groupname" element={<StudentDetailedInfo/>} />
       </Routes>
     </div>
   );

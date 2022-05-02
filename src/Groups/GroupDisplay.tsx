@@ -8,10 +8,28 @@ import React,{useState,useEffect} from 'react';
 import firebase from './../firebase.js';
 
 const GroupDisplay = ({groupID, name, availability, neededExp, numStudents, totalStudents, requests}) => {
-    console.log("Display requests: ", requests);
+    const [profileName, setProfileName] = useState("");
     const navigate = useNavigate();
     const { user, courseID } = useParams();
     const navigationURL = '/' + user + '/' + courseID + '/group/' + groupID;
+
+    const fetchProfileName = async () => {
+        if (user != undefined) {
+            const response=firebase.db.collection('students').doc(user);
+            await response.get()
+            .then(doc => {
+                const data = doc.data();
+                if (data) {
+                    setProfileName(data.name);
+                }
+            })
+        }
+    }
+
+    useEffect(() => {
+        fetchProfileName();
+    }, [])
+
     const checkRequests = () => {
         if (requests.includes(user)) {
             return (<button className="groups-button">Request Pending</button>)
@@ -20,13 +38,16 @@ const GroupDisplay = ({groupID, name, availability, neededExp, numStudents, tota
         }
     }
     const sendRequest = () => {
-        var currRequests = requests;
-        console.log("Success1")
-        currRequests.push(user)
-        firebase.db.collection("groups").doc(groupID).update({
-            requests: currRequests,
-        })
-        console.log("Success2")
+        if (user != undefined && courseID != undefined) {
+            let currRequests = requests;
+            let m = {}
+            m['profileID'] = user + courseID;
+            m['profileName'] = profileName;
+            currRequests.push(m)
+            firebase.db.collection("groups").doc(groupID).update({
+                requests: currRequests,
+            })
+        }
     }
     return (
         <div>

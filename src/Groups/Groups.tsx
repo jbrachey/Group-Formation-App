@@ -88,6 +88,9 @@ const Groups = () => {
                     <br/>
                     <br/>
                     <button onClick={() => navigate('/' + user + '/' + courseID + '/' + groupName + '/groupupdate')}>Update Group</button>
+                    <br/>
+                    <br/>
+                    <button onClick={() => navigate('/' + user + '/' + courseID + '/' + groupName + '/viewrequests')}>View Requests</button>
                 </div>
             )}
             <BottomNav/>
