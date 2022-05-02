@@ -42,7 +42,17 @@ const CourseCreation = () => {
             max: inputs.maxGroupSize,
         })
         // Here need to update groups to have the new group
-        var tempCourse = courses;
+        let tempCourse: any = [];
+        console.log('courses: ', courses)
+        for (let x = 0; x < courses.length; x++) {
+            if (typeof courses[x] == "object") {
+                for (let y = 0; y < courses[x].length; y++) {
+                    tempCourse.push(courses[x][y])
+                }
+            } else {
+                tempCourse.push(courses[x]);
+            }
+        }
         console.log("Initial Courses: ", tempCourse)
         tempCourse.push(inputs.courseID)
         console.log("Secondary Courses: ", tempCourse)
@@ -53,7 +63,7 @@ const CourseCreation = () => {
     }
     return (
         <div>
-            <PageHeader title={"Group Formation App"} hasBackArrow={false} />
+            <PageHeader title={"Create Course"} hasBackArrow={false} />
             <ul>
                 <li>
                     <label className="signin-info">Course ID:</label>

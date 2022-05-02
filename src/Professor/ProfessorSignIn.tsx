@@ -43,7 +43,7 @@ const ProfessorSignIn = ({}) => {
     }
     const createProfessor = () => {
         firebase.db.collection("professors").doc(inputs.username).set({
-            course: [null],
+            courses: [null],
             username: inputs.username,
             pw: inputs.pw
         })

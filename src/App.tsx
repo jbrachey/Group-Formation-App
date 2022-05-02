@@ -18,6 +18,7 @@ import ProfessorCourseView from './Professor/ProfessorCourseView';
 import CourseCreation from './Professor/CourseCreation';
 import ProfileCreation from './Students/ProfileCreation';
 import ProfileUpdate from './Students/ProfileUpdate';
+import JoinCourse from './Students/JoinCourse';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/p/:user/courses" element={<ProfessorCoursesHome/>} />
         <Route path="/p/:user/:courseID" element={<ProfessorCourseView/>} />
         <Route path="/p/:user/coursecreation" element={<CourseCreation/>} />
+        <Route path="/:user/joincourse" element={<JoinCourse />} />
         <Route path="/:user/courses" element={<CoursesHome />} />
         <Route path="/:user/:courseID/groups" element={<Groups/>} />
         <Route path="/:user/:courseID/makeprofile" element={<ProfileCreation/>} />

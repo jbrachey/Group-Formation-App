@@ -56,6 +56,7 @@ const CoursesHome = () => {
                     )
                 })}
             </ul>
+            <button onClick={() => navigate('/' + user + '/joincourse')}>Join Course</button>
         </div>
     )
 }
